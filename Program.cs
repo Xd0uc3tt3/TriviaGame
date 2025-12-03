@@ -34,10 +34,14 @@ namespace TriviaGame
                     bool isCorrect = AskQuestion(questions[i]);
 
                     if (isCorrect)
+                    {
                         correctAnswers++;
+                    }
                 }
 
-                //
+                DisplayFinalScore(playerName, correctAnswers, questions.Count);
+
+                isPlaying = PlayAgainPrompt();
             }
         }
 
@@ -51,6 +55,7 @@ namespace TriviaGame
             Console.WriteLine("Question: " + questionNumber);
             Console.WriteLine("Current Score: " + percent.ToString("0") + "%");
             Console.WriteLine("========================================");
+            Console.WriteLine("");
         }
 
         static bool AskQuestion(Question q)
@@ -96,6 +101,57 @@ namespace TriviaGame
             };
         }
 
+        static void DisplayFinalScore(string name, int correct, int total)
+        {
+            Console.Clear();
+            Console.WriteLine("========================================");
+            Console.WriteLine($"{name}, you scored {correct}/{total}!");
+
+            double percent = (double)correct / total * 100;
+
+            if (percent == 100)
+            {
+                Console.WriteLine("Perfect score! Excellent mastery!");
+            }
+                
+            else if (percent >= 80)
+            {
+                Console.WriteLine("Great job! Not too shabby!");
+            }
+            else if (percent >= 50)
+            {
+                Console.WriteLine("Keep practicing.");
+            }
+            else
+            {
+                Console.WriteLine("Keep studying");
+            }
+
+            Console.WriteLine("========================================");
+        }
+
+        static bool PlayAgainPrompt()
+        {
+            Console.Write("Play again? (Y/N): ");
+
+            while (true)
+            {
+                ConsoleKeyInfo key = Console.ReadKey(true);
+
+                if (key.Key == ConsoleKey.Y)
+                {
+                    return true;
+                }
+
+                if (key.Key == ConsoleKey.N)
+                {
+                    return false;
+                }
+
+                Console.Write("Invalid input. Press Y or N: ");
+            }
+        }
+
         class Question
         {
             public string Text { get; }
@@ -109,5 +165,7 @@ namespace TriviaGame
                 CorrectAnswer = correctAnswer;
             }
         }
+
+
     }
 }
