@@ -97,6 +97,46 @@ namespace TriviaGame
                     "What does 'void' mean when declaring a method?",
                     new string[] { "It returns a value", "It doesnt return a value", "It voids a method", "Has no meaning" },
                     2
+                ),
+                new Question(
+                    "Which access modifier makes a member only accessible within its own class?",
+                    new string[] { "public", "private", "protected", "internal" },
+                    2
+                ),
+                new Question(
+                    "Which loop runs while a condition is true",
+                    new string[] { "for", "foreach", "while", "None of the above" },
+                    3
+                ),
+                new Question(
+                    "Arrays in C# are:",
+                    new string[] { "Fixed size", "Resizable", "Stored on external files", "Only hold numbers" },
+                    1
+                ),
+                new Question(
+                    "What is the process of converting a value from one data type to another, such as turning an integer into a string, called?",
+                    new string[] { "Looping", "Parsing", "Indexing", "Clamp", },
+                    2
+                ),
+                new Question(
+                    "What does the Math.Clamp method do",
+                    new string[] { "It rounds a number to the nearest whole number", "It converts a data type to another", "it repeated a value a specified amount of times", "It converts a number from one type to another", },
+                    4
+                ),
+                new Question(
+                    "What is the output of 10 % 3?",
+                    new string[] { "3", "0", "1", "10" },
+                    3
+                ),
+                new Question(
+                    "What does the 'static' keyword mean when applied to a method?",
+                    new string[] { "It belongs to an instance", "It belongs to the class", "It is temporary", "It cannot return a value" },
+                    2
+                ),
+                new Question(
+                    "The crabeater seal native to the coast of antartica, eats what?",
+                    new string[] { "Crabs", "Penguins", "Krill", "Turtles" },
+                    3
                 )
             };
         }
