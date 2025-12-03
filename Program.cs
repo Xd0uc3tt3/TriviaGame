@@ -15,9 +15,11 @@ namespace TriviaGame
 
         static void RunGame()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Xander's Trivia Game");
             Console.WriteLine("");
             Console.WriteLine("What is your name?: ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
             string playerName = Console.ReadLine();
 
             bool isPlaying = true;
@@ -50,12 +52,35 @@ namespace TriviaGame
             Console.Clear();
             double percent = answered > 0 ? (double)correct / answered * 100 : 0;
 
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("========================================");
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Player: " + playerName);
+
+            Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("Question: " + questionNumber);
+
+            if (percent == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+            }
+            else if (percent > 50)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+            }
+
             Console.WriteLine("Current Score: " + percent.ToString("0") + "%");
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("========================================");
+            Console.ResetColor();
             Console.WriteLine("");
+
         }
 
         static bool AskQuestion(Question q)
@@ -120,18 +145,18 @@ namespace TriviaGame
                 ),
                 new Question(
                     "What does the Math.Clamp method do",
-                    new string[] { "It rounds a number to the nearest whole number", "It converts a data type to another", "it repeated a value a specified amount of times", "It converts a number from one type to another", },
+                    new string[] { "It rounds a number to the nearest whole number", "It converts a data type to another", "it repeated a value a specified amount of times", "It restricts a value within a specified range", },
                     4
                 ),
                 new Question(
                     "What is the output of 10 % 3?",
-                    new string[] { "3", "0", "1", "10" },
-                    3
+                    new string[] { "1", "0", "3", "10" },
+                    1
                 ),
                 new Question(
-                    "What does the 'static' keyword mean when applied to a method?",
-                    new string[] { "It belongs to an instance", "It belongs to the class", "It is temporary", "It cannot return a value" },
-                    2
+                    "What is the symbol to divide in C#",
+                    new string[] { "&", "%", "//", "/" },
+                    4
                 ),
                 new Question(
                     "The crabeater seal native to the coast of antartica, eats what?",
@@ -144,35 +169,71 @@ namespace TriviaGame
         static void DisplayFinalScore(string name, int correct, int total)
         {
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("========================================");
-            Console.WriteLine($"{name}, you scored {correct}/{total}!");
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write(name);
+
+            Console.ResetColor();
+            Console.Write(", you scored ");
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write($"{correct}/{total}");
+
+            Console.ResetColor();
+            Console.WriteLine("!");
 
             double percent = (double)correct / total * 100;
 
             if (percent == 100)
             {
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Perfect score! Excellent mastery!");
             }
                 
             else if (percent >= 80)
             {
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
                 Console.WriteLine("Great job! Not too shabby!");
             }
             else if (percent >= 50)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Keep practicing.");
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine("Keep studying");
             }
 
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("========================================");
+            Console.WriteLine("");
         }
 
         static bool PlayAgainPrompt()
         {
-            Console.Write("Play again? (Y/N): ");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
+            Console.Write("Play again?: ");
+
+            Console.ResetColor();
+            Console.Write("(");
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("Y");
+
+            Console.ResetColor();
+            Console.Write("/");
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write("N");
+
+            Console.ResetColor();
+            Console.Write("): ");
+
 
             while (true)
             {
@@ -180,11 +241,13 @@ namespace TriviaGame
 
                 if (key.Key == ConsoleKey.Y)
                 {
+                    Console.ResetColor();
                     return true;
                 }
 
                 if (key.Key == ConsoleKey.N)
                 {
+                    Console.ResetColor();
                     return false;
                 }
 
