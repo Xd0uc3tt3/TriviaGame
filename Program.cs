@@ -22,6 +22,14 @@ namespace TriviaGame
             Console.ForegroundColor = ConsoleColor.Cyan;
             string playerName = Console.ReadLine();
 
+            while (playerName.Equals("Xander", StringComparison.OrdinalIgnoreCase))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("You are not Xander");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                playerName = Console.ReadLine();
+            }
+
             bool isPlaying = true;
 
             while (isPlaying)
@@ -32,7 +40,7 @@ namespace TriviaGame
 
                 for (int i = 0; i < questions.Count; i++)
                 {
-                    DisplayHUD(playerName, i + 1, correctAnswers, i);
+                    DisplayHUD(playerName, i + 1, correctAnswers, i, questions.Count);
                     bool isCorrect = AskQuestion(questions[i]);
 
                     if (isCorrect)
@@ -47,13 +55,13 @@ namespace TriviaGame
             }
         }
 
-        static void DisplayHUD(string playerName, int questionNumber, int correct, int answered)
+        static void DisplayHUD(string playerName, int questionNumber, int correct, int answered, int totalQuestions)
         {
             Console.Clear();
             double percent = answered > 0 ? (double)correct / answered * 100 : 0;
 
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("========================================");
+            Console.WriteLine("====================================================");
 
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Player: " + playerName);
@@ -76,12 +84,41 @@ namespace TriviaGame
 
             Console.WriteLine("Current Score: " + percent.ToString("0") + "%");
 
+            DisplayProgressBar(answered, totalQuestions);
+
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("========================================");
+            Console.WriteLine("====================================================");
             Console.ResetColor();
             Console.WriteLine("");
 
         }
+
+        static void DisplayProgressBar(int answered, int totalQuestions)
+        {
+            const int barLength = 30;
+
+            double completionPercent = totalQuestions > 0 ? (double)answered / totalQuestions * 100 : 0;
+
+            int filledLength = (int)Math.Round((completionPercent / 100) * barLength);
+
+            string filled = new string('#', filledLength);
+            string empty = new string('-', barLength - filledLength);
+
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.Write("Quiz Progress: [");
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write(filled);
+
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.Write(empty);
+
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine($"] {completionPercent:0}%");
+
+            Console.ResetColor();
+        }
+
 
         static bool AskQuestion(Question q)
         {
@@ -170,7 +207,7 @@ namespace TriviaGame
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("========================================");
+            Console.WriteLine("====================================================");
 
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write(name);
@@ -209,7 +246,7 @@ namespace TriviaGame
             }
 
             Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("========================================");
+            Console.WriteLine("====================================================");
             Console.WriteLine("");
         }
 
