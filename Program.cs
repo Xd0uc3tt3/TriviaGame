@@ -196,7 +196,7 @@ namespace TriviaGame
                     4
                 ),
                 new Question(
-                    "The Crabeater Seal native to the coast of Antartica, eats what?",
+                    "The Crab-eater Seal native to the coast of Antartica, eats what?",
                     new string[] { "Crabs", "Penguins", "Krill", "Turtles" },
                     3
                 )
