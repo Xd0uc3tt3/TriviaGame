@@ -182,7 +182,7 @@ namespace TriviaGame
                 ),
                 new Question(
                     "What does the Math.Clamp method do",
-                    new string[] { "It rounds a number to the nearest whole number", "It converts a data type to another", "it repeated a value a specified amount of times", "It restricts a value within a specified range", },
+                    new string[] { "It rounds a number to the nearest whole number", "It converts a data type to another", "it repeats a value a specified amount of times", "It restricts a value within a specified range", },
                     4
                 ),
                 new Question(
@@ -196,7 +196,7 @@ namespace TriviaGame
                     4
                 ),
                 new Question(
-                    "The crabeater seal native to the coast of antartica, eats what?",
+                    "The Crabeater Seal native to the coast of Antartica, eats what?",
                     new string[] { "Crabs", "Penguins", "Krill", "Turtles" },
                     3
                 )
